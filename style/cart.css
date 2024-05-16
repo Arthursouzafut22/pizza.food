@@ -1,0 +1,194 @@
+.caixa-cart{
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 20px;
+  width: 400px;
+  height: 100%;
+  background-color: #272727;
+  display: none;
+  animation: animeCart 0.5s forwards;
+  /* border-left: 1px solid darkgray; */
+  overflow-y: scroll;
+  
+}
+
+.caixa-cart::-webkit-scrollbar {
+  display: none;
+}
+
+.caixa-cart.active {
+  display: block;
+}
+
+@keyframes animeCart {
+  from {
+    opacity: 0;
+    transform: translate3d(200%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0%);
+  }
+}
+
+
+.cont-cart {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.cont-cart h1 {
+  color: darkgray;
+}
+
+.btn-close {
+  display: block;
+  border: none;
+  background-color: #ffc20d;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.btn-close img {
+  display: block;
+  max-width: 20px;
+}
+
+.product-cart {
+  background-color: #212121;
+  border-radius: 8px;
+  margin-top: 20px;
+  padding: 5px 0px;
+  animation: proCart 0.5s forwards;
+}
+
+
+@keyframes proCart {
+  from {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+
+
+.cont-info {
+  display: flex;
+  align-items: center;
+}
+
+.cont-info img {
+  display: block;
+  max-width: 90px;
+}
+
+.cont-info2 {
+  display: flex;
+  align-items: center;
+  gap: 90px;
+}
+
+.nome {
+  color: darkgray;
+}
+
+.preco {
+  color: darkgray;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  max-width: 90px;
+  margin-top: 10px;
+}
+
+.controls button {
+  display: block;
+  border: none;
+  background-color: #ffc20d;
+  /* background-color: #FFEFC6; */
+  border-radius: 3px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.disable:disabled {
+   background-color: blue;
+}
+
+.controls button img {
+  display: block;
+  max-width: 12px;
+}
+
+#number {
+  font-size: 16px;
+  text-align: center;
+  border: none;
+  outline: none;
+  background-color: #212121;
+  color: darkgray;
+  width: 100%;
+  padding: 3px 0px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.caixa-valores {
+  background-color: #212121;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.caixa-valores p {
+  font-size: 22px;
+  color: darkgray;
+}
+
+.taxa {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.taxa p:first-child {
+  font-weight: bold;
+}
+
+.caixa-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.caixa-total p:first-child {
+  font-weight: bold;
+}
+
+.btn-finalizar {
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  border: none;
+  background-color: #ffc20d;
+  border-radius: 8px;
+  padding: 6px 16px;
+  cursor: pointer;
+  margin: 15px auto;
+  width: 100%;
+}

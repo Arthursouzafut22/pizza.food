@@ -1,0 +1,52 @@
+
+[
+    {
+        "id": 1,
+        "imagem": "imgspizza/pizza1.png",
+        "nome": "Pizza Margarida",
+        "preco": 50.00,
+        "tipo": "pizza"
+    },
+    {
+        "id": 2,
+        "imagem": "imgspizza/pizza2.png",
+        "nome": "Pizza Italiana",
+        "preco": 60.00,
+        "tipo": "pizza"
+    },
+    {
+        "id": 3,
+        "imagem": "imgspizza/pizza3.png",
+        "nome": "Pizza Vegetal",
+        "preco": 40.00,
+        "tipo": "pizza"
+    },
+    {
+        "id": 4,
+        "imagem": "imgspizza/pizza4.png",
+        "nome": "Pizza Cogumelo",
+        "preco": 55.00,
+        "tipo": "pizza"
+    },
+    {
+        "id": 5,
+        "imagem": "imgspizza/pizza5.png",
+        "nome": "Pizza 4 em 1",
+        "preco": 55.00,
+        "tipo": "pizza"
+    },
+    {
+        "id": 6,
+        "imagem": "imgspizza/pizza6.png",
+        "nome": "Pizza de Queijo",
+        "preco": 45.00,
+        "tipo": "pizza"
+    },
+    {
+        "id": 7,
+        "imagem": "imgspizza/pizza7.png",
+        "nome": "Pizza Calabresa",
+        "preco": 60.00,
+        "tipo": "pizza"
+    }
+]

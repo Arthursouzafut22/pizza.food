@@ -1,0 +1,86 @@
+.main-cardapio {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, auto));
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.product {
+  max-width: 220px;
+  background-color: #272727;
+  padding: 0px 10px 16px 10px;
+  border-radius: 15px;
+}
+
+.product img {
+  display: block;
+  max-width: 160px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.product p {
+  text-align: center;
+  margin: 4px auto;
+  color: darkgray;
+}
+
+.btn-purchase {
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  border: none;
+  background-color: #ffc20d;
+  border-radius: 8px;
+  padding: 6px 16px;
+  cursor: pointer;
+  margin: 10px auto auto auto;
+  width: 100%;
+}
+
+.btn-purchase:active {
+  background-color: #ffc30dc3;
+  
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: center;
+  gap: 2px;
+}
+
+.rating:not(:checked) > input {
+  appearance: none;
+}
+
+.rating:not(:checked) > label {
+  cursor: pointer;
+  font-size: 15px;
+  fill: #e58e09;
+}
+
+.rating:not(:checked) > label > svg {
+  fill: #e58e09;
+  transition: fill 0.3s ease;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+  fill: #e58e09;
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  fill: #ff9e0b;
+}
+
+.rating > input:checked ~ label > svg {
+  fill: #ffa723;
+}
