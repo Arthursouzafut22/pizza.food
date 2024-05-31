@@ -1,27 +1,32 @@
 .main-cardapio {
+  max-width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, auto));
   justify-content: center;
   align-items: center;
-  gap: 25px;
-  margin-top: 30px;
+  gap: 10px 30px;
+  margin-top: 20px;
 }
 
 .product {
   max-width: 220px;
+  width: 100%;
   background-color: #272727;
   padding: 0px 10px 16px 10px;
+  margin: 15px auto auto auto;
   border-radius: 15px;
 }
 
 .product img {
   display: block;
-  max-width: 160px;
+  width: 160px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0;
 }
 
 .product p {
+  font-size: clamp(14px, 4vw, 16px);
   text-align: center;
   margin: 4px auto;
   color: darkgray;
@@ -32,6 +37,7 @@
   font-weight: bold;
   display: block;
   border: none;
+  color: #212121;
   background-color: #ffc20d;
   border-radius: 8px;
   padding: 6px 16px;
@@ -42,7 +48,6 @@
 
 .btn-purchase:active {
   background-color: #ffc30dc3;
-  
 }
 
 .rating {

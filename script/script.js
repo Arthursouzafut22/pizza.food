@@ -1,7 +1,8 @@
+
+
 const btnCart = document.getElementById("btn-cart");
 const btnClose = document.querySelector(".btn-close");
 const caixaCart = document.querySelector(".caixa-cart");
-const productt = document.querySelector(".product");
 
 document.addEventListener("DOMContentLoaded", () => {
   cardProduct();
@@ -14,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 let produtoListado = [];
 
-const modalCart = () => {
+ const modalCart = () => {
   btnCart.addEventListener("click", () => {
     caixaCart.classList.toggle("active");
   });
@@ -33,7 +34,10 @@ modalCart();
 
 
 const cardProduct = async () => {
+
   const response = await fetch("/dados.json");
+  if(!response.ok)  throw new TypeError('Error')
+   
   const responseJson = await response.json();
 
   let valueProduct = responseJson;
@@ -161,14 +165,15 @@ const addProductCart = (produto) => {
   const cart = document.querySelector(".cart");
   const serachPro = produtoListado.find((item) => item.id === produto);
   const element = document.querySelectorAll('div[data-type]');
-  const elementArray = Array.from(element)
+  const elementArray = Array.from(element);
   const productCart = newProductCart(serachPro);
   const newElement = createNewDom(productCart);
+  
 
   const searchElement = elementArray.find((item) => {
-    const tipo = item.getAttribute('data-type')
+    const tipo = item.getAttribute('data-type');
 
-    return produto === Number(item.id) && item.tipo === tipo
+    return produto === Number(item.id) && item.tipo === tipo;
 
   })
 
@@ -180,32 +185,38 @@ const addProductCart = (produto) => {
     input.value = Number(input.value) + 1;
   }
 
-  changeValue()
-
-
-
-
-
-
-  // const newArray = Array.from(produtoListado);
-
-  // const productCart = newProductCart(serachPro);
-  // const newElement = createNewDom(productCart);
-  // return cart.appendChild(newElement);
-    
-
-    
-
-    
-  
-
-  
-
-
-  
-
-
+  changeValue();
+  alertModal();
 };
+
+
+
+
+const alertModal = () => {
+  const modal = document.querySelector('.modeAlert');
+  
+    modal.classList.add('active');
+    
+    setTimeout(() => {
+      modal.classList.remove('active');
+    },2000);
+
+    return modal;
+
+}
+
+
+
+const finalizeOrder = () => {
+  const finalizy = document.querySelector('.cont-finalizy');
+
+  finalizy.classList.add('active');
+
+  setTimeout(() => {
+    finalizy.classList.remove('active')
+  },2000)
+
+}
 
 
 
@@ -227,7 +238,7 @@ const formatCurrency = (price) => {
 
 
 
-function changeValue() {
+const changeValue = () => {
 
   const type = document.querySelectorAll('div[data-type]');
   const newElement = Array.from(type);
@@ -239,6 +250,8 @@ function changeValue() {
     const preco = element.querySelector('.preco').innerHTML;
     const input = document.getElementById('number');
     const newPrice = replacePrice(preco);
+   const quanty = document.querySelector('.quanty').innerText 
+   
 
     const value = newPrice * parseInt(input.value);
     
@@ -265,7 +278,7 @@ const replacePrice = (price) => {
 
 
 
-function changeQuantity(acao, id, tipoProduto) {
+const changeQuantity = (acao, id, tipoProduto) => {
   
   const acoes = ['menos','mais'];
   const typeElemts = document.querySelectorAll('div[data-type]');
@@ -293,9 +306,6 @@ function changeQuantity(acao, id, tipoProduto) {
   changeValue();
 
 }
-
-
-
 
 
 
@@ -331,4 +341,40 @@ const newProductCart = (produto) => {
 
 
 
+
+
+
+
+
+const search = document.getElementById('search');
+
+
+function filterProducts() {
+  const mainCardapio = document.querySelector(".main-cardapio");
+
+  let value = valueName();
+
+  const newArray = Array.from(produtoListado);
+  const productFilter = newArray.filter((product) => {
+    return product.nome.toLowerCase().includes(value)
+  })
+
+  if(value.includes(productFilter)) {
+    mainCardapio.innerHTML = '<span class="erro">Nenhum produto encontrado...</span>'
+  }else {
+    return listaProduct(productFilter)
+
+  }
+ 
+}
+
+
+search.addEventListener('keyup', filterProducts)
+
+
+function valueName() {
+  let value = search.value;
+  return value
+
+}
 
