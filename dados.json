@@ -55,5 +55,19 @@
         "nome": "Pizza Calabresa",
         "preco": 60.00,
         "tipo": "pizza"
+    },
+    {
+        "id": 6,
+        "imagem": "imgspizza/pizza7.png",
+        "nome": "Pizza Calabresa",
+        "preco": 60.00,
+        "tipo": "pizza"
+    },
+    {
+        "id": 6,
+        "imagem": "imgspizza/pizza7.png",
+        "nome": "Pizza Calabresa",
+        "preco": 60.00,
+        "tipo": "pizza"
     }
 ]

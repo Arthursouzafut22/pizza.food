@@ -1,5 +1,3 @@
-
-
 const btnCart = document.getElementById("btn-cart");
 const btnClose = document.querySelector(".btn-close");
 const caixaCart = document.querySelector(".caixa-cart");
@@ -9,13 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
   changeValue();
 });
 
-
-
-
-
 let produtoListado = [];
 
- const modalCart = () => {
+const modalCart = () => {
   btnCart.addEventListener("click", () => {
     caixaCart.classList.toggle("active");
   });
@@ -24,20 +18,15 @@ let produtoListado = [];
     caixaCart.classList.remove("active");
   });
 };
-
 modalCart();
 
 
-
-
-
-
+// CHAMADA DE API...
 
 const cardProduct = async () => {
-
   const response = await fetch("/dados.json");
-  if(!response.ok)  throw new TypeError('Error')
-   
+  if (!response.ok) throw new TypeError("Error");
+
   const responseJson = await response.json();
 
   let valueProduct = responseJson;
@@ -45,10 +34,7 @@ const cardProduct = async () => {
   return listaProduct(valueProduct);
 };
 
-
-
-
-
+// LISTAR PRODUTOS...
 
 const listaProduct = (produto) => {
   const mainCardapio = document.querySelector(".main-cardapio");
@@ -64,10 +50,7 @@ const listaProduct = (produto) => {
 };
 
 
-
-
-
-
+// CRIAR PRODUTO....
 
 const newProduct = (produto) => {
   return `
@@ -138,15 +121,12 @@ const newProduct = (produto) => {
         </div>
         <p>${produto.nome}</p>
         <p>${formatCurrency(produto.preco)}</p>
-        <button class="btn-purchase" onclick="addProductCart(${produto.id})">Comprar</button>
+        <button class="btn-purchase" onclick="addProductCart(${
+          produto.id
+        })">Comprar</button>
       </div>
     `;
 };
-
-
-
-
-
 
 
 const createNewDom = (element) => {
@@ -156,32 +136,26 @@ const createNewDom = (element) => {
   return newDiv;
 };
 
-
-
-
-
+// ADICIONAR PRODUTO NO CARRINHO...
 
 const addProductCart = (produto) => {
   const cart = document.querySelector(".cart");
   const serachPro = produtoListado.find((item) => item.id === produto);
-  const element = document.querySelectorAll('div[data-type]');
+  const element = document.querySelectorAll("div[data-type]");
   const elementArray = Array.from(element);
   const productCart = newProductCart(serachPro);
   const newElement = createNewDom(productCart);
-  
 
   const searchElement = elementArray.find((item) => {
-    const tipo = item.getAttribute('data-type');
+    const tipo = item.getAttribute("data-type");
 
     return produto === Number(item.id) && item.tipo === tipo;
+  });
 
-  })
-
-  
-  if(!searchElement) {
-    cart.appendChild(newElement)
-  }else {
-    const input = document.getElementById('number');
+  if (!searchElement) {
+    cart.appendChild(newElement);
+  } else {
+    const input = document.getElementById("number");
     input.value = Number(input.value) + 1;
   }
 
@@ -190,126 +164,109 @@ const addProductCart = (produto) => {
 };
 
 
-
+// MODAL ALERTA SUCESS...
 
 const alertModal = () => {
-  const modal = document.querySelector('.modeAlert');
-  
-    modal.classList.add('active');
-    
-    setTimeout(() => {
-      modal.classList.remove('active');
-    },2000);
+  const modal = document.querySelector(".modeAlert");
 
-    return modal;
-
-}
-
-
-
-const finalizeOrder = () => {
-  const finalizy = document.querySelector('.cont-finalizy');
-
-  finalizy.classList.add('active');
+  modal.classList.add("active");
 
   setTimeout(() => {
-    finalizy.classList.remove('active')
-  },2000)
+    modal.classList.remove("active");
+  }, 2000);
 
-}
-
-
-
-
-
-const formatCurrency = (price) => {
-
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-  }).format(price);
-
+  return modal;
 };
 
 
 
+const finalizeOrder = () => {
+  const finalizy = document.querySelector(".cont-finalizy");
+
+  finalizy.classList.add("active");
+
+  setTimeout(() => {
+    finalizy.classList.remove("active");
+  }, 2000);
+};
 
 
+// FORMATAR MOEDA...
+
+const formatCurrency = (price) => {
+  return new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(price);
+};
+
+
+// ATUALIZAR VALOR DO CARRINHO....
 
 const changeValue = () => {
-
-  const type = document.querySelectorAll('div[data-type]');
+  const type = document.querySelectorAll("div[data-type]");
   const newElement = Array.from(type);
 
   let total = 0.0;
 
-  for(const element of newElement) {
-
-    const preco = element.querySelector('.preco').innerHTML;
-    const input = document.getElementById('number');
+  for (const element of newElement) {
+    const preco = element.querySelector(".preco").innerHTML;
+    const input = document.getElementById("number");
     const newPrice = replacePrice(preco);
-   const quanty = document.querySelector('.quanty').innerText 
-   
+    const quanty = document.querySelector(".quanty").innerText;
 
     const value = newPrice * parseInt(input.value);
-    
+
     total += Number(value.toFixed(2));
-  };
+  }
 
-  const valueTotal = document.querySelector('.total');
-  return valueTotal.innerHTML = formatCurrency(total);
-}
+  const valueTotal = document.querySelector(".total");
+  return (valueTotal.innerHTML = formatCurrency(total));
+};
 
+
+// LIMPAR PRECO...
 
 const replacePrice = (price) => {
-
-  let cleanPrice = price.replace(',','.');
-  cleanPrice = cleanPrice.replace(/[^\d.]/g, '');
+  let cleanPrice = price.replace(",", ".");
+  cleanPrice = cleanPrice.replace(/[^\d.]/g, "");
 
   return parseInt(cleanPrice);
-  
-  };
-  
+};
 
 
-
-
-
+// MUDAR QUANTIDADE DO PRODUTO....
 
 const changeQuantity = (acao, id, tipoProduto) => {
-  
-  const acoes = ['menos','mais'];
-  const typeElemts = document.querySelectorAll('div[data-type]');
+  const acoes = ["menos", "mais"];
+  const typeElemts = document.querySelectorAll("div[data-type]");
   const newArray = Array.from(typeElemts);
-  
-  if(!acoes.includes(acao)) return alert('Erro!');
+
+  if (!acoes.includes(acao)) return alert("Erro!");
 
   const searchType = newArray.find((item) => {
-    const type = item.getAttribute('data-type');
-     
-    return id === Number(item.id) && tipoProduto === type;
+    const type = item.getAttribute("data-type");
 
+    return id === Number(item.id) && tipoProduto === type;
   });
 
-  const input = document.getElementById('number');
+  const input = document.getElementById("number");
   let value = Number(input.value);
 
-  if(acao === 'menos') {
-    if(value === 0) return searchType.remove();
-      input.value = value - 1;
-  }else {
+  if (acao === "menos") {
+    if (value === 0) return searchType.remove();
+    input.value = value - 1;
+  } else {
     input.value = value + 1;
   }
 
   changeValue();
-
-}
-
+};
 
 
-
+// CRIAR NOVO PRODUTO NO CARRINHO...
 
 const newProductCart = (produto) => {
   return `
@@ -340,14 +297,9 @@ const newProductCart = (produto) => {
 };
 
 
+// FILTRAR PRODUTOS....
 
-
-
-
-
-
-const search = document.getElementById('search');
-
+const search = document.getElementById("search");
 
 function filterProducts() {
   const mainCardapio = document.querySelector(".main-cardapio");
@@ -356,25 +308,20 @@ function filterProducts() {
 
   const newArray = Array.from(produtoListado);
   const productFilter = newArray.filter((product) => {
-    return product.nome.toLowerCase().includes(value)
-  })
+    return product.nome.toLowerCase().includes(value);
+  });
 
-  if(value.includes(productFilter)) {
-    mainCardapio.innerHTML = '<span class="erro">Nenhum produto encontrado...</span>'
-  }else {
-    return listaProduct(productFilter)
-
+  if (value.includes(productFilter)) {
+    mainCardapio.innerHTML =
+      '<span class="erro">Nenhum produto encontrado...</span>';
+  } else {
+    return listaProduct(productFilter);
   }
- 
 }
 
-
-search.addEventListener('keyup', filterProducts)
-
+search.addEventListener("keyup", filterProducts);
 
 function valueName() {
   let value = search.value;
-  return value
-
+  return value;
 }
-

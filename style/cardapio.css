@@ -1,16 +1,15 @@
 .main-cardapio {
   max-width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, auto));
-  justify-content: center;
+  display: flex;
   align-items: center;
-  gap: 10px 30px;
+  flex-wrap: wrap;
   margin-top: 20px;
+  padding: 0px 10px;
 }
 
 .product {
   max-width: 220px;
-  width: 100%;
+  flex: 1 1 220px;
   background-color: #272727;
   padding: 0px 10px 16px 10px;
   margin: 15px auto auto auto;
@@ -88,4 +87,27 @@
 
 .rating > input:checked ~ label > svg {
   fill: #ffa723;
+}
+
+
+@media (max-width:480px) {
+  .product {
+    max-width: 180px;
+
+  }
+  .product img {
+    width: 140px;
+  }
+}
+
+
+@media (max-width:398px) {
+  .main-cardapio {
+    gap: 5px;
+    padding: 0px 16px;
+   
+   }
+  .product {
+    max-width: 150px;
+  }
 }
